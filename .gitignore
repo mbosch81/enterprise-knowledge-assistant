@@ -4,3 +4,8 @@ __pycache__/
 .pytest_cache/
 .env
 *.egg-info/
+.DS_Store
+.env.*
+!.env.example
+.coverage
+htmlcov/
