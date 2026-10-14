@@ -1,0 +1,33 @@
+{
+  "provider": "offline-extractive-v1",
+  "cases": [
+    {
+      "question": "How many annual leave days?",
+      "retrieval_hit": true,
+      "passed": true
+    },
+    {
+      "question": "When must security incidents be reported?",
+      "retrieval_hit": true,
+      "passed": true
+    },
+    {
+      "question": "How long are backups retained?",
+      "retrieval_hit": true,
+      "passed": true
+    },
+    {
+      "question": "What is the CEO salary?",
+      "retrieval_hit": null,
+      "passed": true
+    },
+    {
+      "question": "What is the secret merger code?",
+      "retrieval_hit": null,
+      "passed": true
+    }
+  ],
+  "passed": 5,
+  "total": 5,
+  "limitations": "Tiny synthetic lexical baseline; no semantic quality, fairness or real LLM evidence."
+}

@@ -32,10 +32,18 @@ The repository was initialized on `main`. The initial commit, README, project co
 
 ## Outstanding checks
 
-- Docker and uv were not found in the initial development environment's PATH. PostgreSQL and Compose integration have not been executed.
+- Automated PostgreSQL tenant-isolation tests and API-restart persistence checks remain outstanding.
 - The PDF extraction path is implemented but has not been tested with a PDF fixture. OCR is not supported.
-- The GitHub Actions workflow is prepared; no remote workflow result has been verified.
-- Python 3.12 CI compatibility and the container build require separate verification.
+- Additional database and container-build CI jobs remain planned.
+- Python 3.12 CI and the container build have passed the guided checks recorded below.
 - Semantic embeddings, broader answer-quality evaluation, and fairness evaluation remain outstanding.
 
 `requirements-snapshot.txt` records the dependency resolution from the initial Python 3.14 environment. It is an environment snapshot, not a cross-platform lockfile.
+
+## Guided Docker and GitHub checks
+
+The project owner reported successful GitHub offline tests and evaluation under Python 3.12, followed by a green run after updating the actions and selecting Ubuntu 24.04.
+
+Docker Desktop was installed and the engine was reachable (Docker 29.8.2, Compose 5.6.0, Linux ARM64). `docker compose config --quiet` succeeded. The API image built and both containers started; PostgreSQL was healthy and the API was exposed on localhost.
+
+A database query confirmed one chunk from `policies.md` for tenant `demo`. The API returned the expected 30-day annual-leave quote through PostgreSQL. After restarting the database, the same chunk remained and the running API answered successfully. These are manual integration observations supplied during the guided setup, not an automated database test suite.

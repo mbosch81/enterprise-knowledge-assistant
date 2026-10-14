@@ -1,0 +1,22 @@
+{
+  "status": "completed",
+  "endpoint": "[redacted local-network endpoint]",
+  "elapsed_seconds": 4.93,
+  "result": {
+    "answer": "# Synthetic company policy \u2014 demo only Employees receive 30 days of annual leave per calendar year.",
+    "abstained": false,
+    "citations": [
+      {
+        "chunk_id": "fdfc109a7657b861123a13b18bad52c4195a45a55f0f4886019ea97bcd33e670",
+        "source": "policies.md",
+        "location": "markdown:word:0",
+        "quote": "# Synthetic company policy \u2014 demo only Employees receive 30 days of annual leave per calendar year."
+      }
+    ],
+    "provider": "ollama-evidence-selection",
+    "model_tokens": 332,
+    "model_cost_usd": 0,
+    "model": "qwen3:14b"
+  },
+  "report_note": "Endpoint address removed for sharing; inference result unchanged."
+}

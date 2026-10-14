@@ -19,7 +19,7 @@ This is a demonstration identity model. OpenID Connect (OIDC), roles, and docume
 
 `MemoryStore` supports fast offline tests. `PostgresStore` uses the same interface and parameterized SQL with pgvector cosine distance to rank vectors by similarity. The current vectors represent word overlap rather than semantic embeddings.
 
-The database adapter performs an exact search over the permitted documents. Approximate search indexes such as HNSW, connection pooling, and asynchronous providers will be introduced only when measurements justify them. Database integration still requires a verified run.
+The database adapter performs an exact search over the permitted documents. Approximate search indexes such as HNSW, connection pooling, and asynchronous providers will be introduced only when measurements justify them. A guided manual Docker run verified ingestion, retrieval, and persistence after a database restart. Automated database isolation tests remain outstanding.
 
 The SQL adapter is intended for use behind the authenticated API. PostgreSQL row-level security (RLS) is not yet implemented as an additional database-enforced access boundary.
 

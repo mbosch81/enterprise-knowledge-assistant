@@ -14,7 +14,7 @@ Acceptance criteria:
 - CI tests require no paid model calls.
 - Local setup and the demo are reproducible from documented instructions.
 
-PostgreSQL acceptance requires a separate integration run: start Compose, confirm persistence after an API restart, and test tenant isolation against the actual database. These checks remain outstanding.
+A guided Docker run confirmed startup, a quoted API answer, and persistence and API access after a database restart. Persistence after an API restart and automated tenant-isolation checks against the actual database remain outstanding.
 
 ## M2 — Semantic RAG demo (next priority)
 
@@ -63,7 +63,7 @@ Acceptance criteria:
 - Measure median (p50) and p95 latency under a defined workload.
 - Test provider failures and timeouts. For any paid provider, enforce a budget before and during evaluation runs.
 - Explore fairness using paired questions with the same underlying meaning but different names, pronouns, or languages. Compare answerability, sources, and error rates; document the limits of this operational definition.
-- Add a database integration job to CI, verify the container build, and document a five-minute demo.
+- Add a database integration job to CI and document a five-minute demo. The container build has passed a manual local check; automated build verification remains planned.
 
 The five baseline policy questions do not establish demographic fairness. Local inference has no per-call API fee, but hardware and electricity still have costs.
 

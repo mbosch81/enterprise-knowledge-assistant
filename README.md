@@ -10,7 +10,7 @@ The first working baseline reads synthetic documents, searches for relevant pass
 
 An initial local model run with Ollama has also been completed successfully. Retrieval currently relies on word overlap; semantic embeddings are the next development step.
 
-This is an evolving learning project. PostgreSQL integration, broader evaluation, and production safeguards still require further implementation and verification. The existing implementation is an initial scaffold that will be reviewed and developed step by step.
+This is an evolving learning project. Broader evaluation, automated database isolation tests, and production safeguards still require further implementation and verification. The existing implementation is an initial scaffold that will be reviewed and developed step by step.
 
 ### How the baseline works
 
@@ -22,11 +22,11 @@ This is an evolving learning project. PostgreSQL integration, broader evaluation
 
 The offline baseline converts words into numerical vectors using a deterministic hash function. These are lexical vectors, not embeddings from a semantic model. Word overlap can miss paraphrases, and hash collisions can affect retrieval. The evidence check does not establish whether a passage fully answers the question.
 
-FastAPI provides the HTTP API. A bounded LangGraph workflow performs one read-only knowledge search. It does not yet plan tasks autonomously. A PostgreSQL/pgvector adapter is implemented, but a database integration run remains outstanding.
+FastAPI provides the HTTP API. A bounded LangGraph workflow performs one read-only knowledge search. It does not yet plan tasks autonomously. The PostgreSQL/pgvector adapter has passed a manual Docker integration check; automated database isolation tests remain outstanding.
 
 ## Local setup
 
-Python 3.12 or newer is required. Development has been checked locally with Python 3.14; the Python 3.12 CI configuration has not yet been run on GitHub.
+Python 3.12 or newer is required. Development has been checked locally with Python 3.14; the GitHub CI workflow has also passed with Python 3.12.
 
 From the project directory:
 
@@ -98,11 +98,11 @@ Compose reads local settings from `.env`; `.env.example` provides a starting poi
 
 The current table stores 256-dimensional lexical vectors. Setting `DATABASE_URL` activates the PostgreSQL adapter. A change to the embedding model or vector dimensions requires a migration strategy and re-ingestion.
 
-The Compose setup has not yet been verified in an integration run. For Ollama in a container, configure an endpoint reachable from that container: `localhost` refers to the container itself.
+A guided manual integration run verified the container build, ingestion into PostgreSQL, a quoted API answer, and persistence and API access after a database restart. Automated cross-tenant database tests remain outstanding. For Ollama in a container, configure an endpoint reachable from that container: `localhost` refers to the container itself.
 
 ## Documentation
 
-The supporting documents are currently written in German. They are initial drafts and will be reviewed alongside the implementation.
+The supporting documents are written in English and are reviewed alongside the implementation.
 
 - [Architecture and design decisions](docs/architecture.md)
 - [Milestones and acceptance criteria](docs/milestones.md)
@@ -115,3 +115,9 @@ The supporting documents are currently written in German. They are initial draft
 The documents in `data/synthetic/` and the cases in `data/evaluation-v1.json` were created for this project. They describe fictional policies and contain no confidential company data.
 
 Project code and synthetic data are available under the [MIT License](LICENSE). Any future third-party datasets will require documented sources and licenses.
+
+## Dependency snapshot and example reports
+
+`pyproject.toml` defines the project's dependencies. `requirements-snapshot.txt` records exact versions from the initial Python 3.14 development environment for reference; CI and Docker do not install from it, and it is not a cross-platform lockfile.
+
+`outputs/` contains selected synthetic-data reports and a project status summary. Private endpoint addresses have been removed from the shared model report. These reports describe specific runs rather than general quality guarantees.
