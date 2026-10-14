@@ -1,0 +1,27 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_DB: eka
+      POSTGRES_USER: eka
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U eka -d eka"]
+      interval: 3s
+      retries: 20
+    volumes: ["database:/var/lib/postgresql/data"]
+  api:
+    build: .
+    ports: ["127.0.0.1:8000:8000"]
+    environment:
+      DATABASE_URL: postgresql://eka:${POSTGRES_PASSWORD}@db:5432/eka
+      EKA_PROVIDER: ${EKA_PROVIDER:-offline}
+      OLLAMA_URL: ${OLLAMA_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-}
+      OLLAMA_TIMEOUT_SECONDS: ${OLLAMA_TIMEOUT_SECONDS:-90}
+      EKA_TOKENS: ${EKA_TOKENS:?set EKA_TOKENS}
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  database:
