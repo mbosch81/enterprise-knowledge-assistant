@@ -1,0 +1,7 @@
+[
+ {"question":"How many annual leave days?","expected":"30","source":"policies.md"},
+ {"question":"When must security incidents be reported?","expected":"15 minutes","source":"policies.md"},
+ {"question":"How long are backups retained?","expected":"35 days","source":"policies.md"},
+ {"question":"What is the CEO salary?","expected":null,"source":null},
+ {"question":"What is the secret merger code?","expected":null,"source":null}
+]
